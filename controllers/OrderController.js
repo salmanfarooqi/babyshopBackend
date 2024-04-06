@@ -6,13 +6,18 @@ const Order = require('../models/order.js');
 const createOrder = async (req, res) => {
   try {
     // Extract necessary data from the request body
-    const { userId, products, totalAmount } = req.body;
+    const { userId, products, totalAmount,zipCode,address,phone } = req.body;
 
     // Create a new order instance
     const newOrder = new Order({
       userId,
       products, // Assuming products is an array of objects containing productId and quantity
-      totalAmount
+      
+      totalAmount,
+      zipCode,address,phone
+      
+
+
     });
 
     // Save the new order to the database

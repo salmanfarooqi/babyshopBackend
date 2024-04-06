@@ -25,6 +25,9 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  zipCode:String,
+  address:String,
+  phone:String,
   createdAt: {
     type: Date,
     default: Date.now
