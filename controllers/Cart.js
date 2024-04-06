@@ -74,9 +74,9 @@ exports.addToCart = async (req, res) => {
 
     if (existingCartItem) {
       // If the product already exists, update the quantity
-      existingCartItem.quantity += 1;
-      await existingCartItem.save();
-      return res.status(200).json({ message: 'Product quantity updated in the cart successfully', cart: existingCartItem });
+      // existingCartItem.quantity += 1;
+      // await existingCartItem.save();
+      return res.status(200).json({ message: 'Product is already exist in the cart'});
     }
 
     // If the product doesn't exist in the cart, create a new cart item
