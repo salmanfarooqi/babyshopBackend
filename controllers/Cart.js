@@ -66,7 +66,7 @@
 const Cart = require('../models/Cart.js');
 
 exports.addToCart = async (req, res) => {
-  const { productId, userId } = req.body;
+  const { productId, userId,quantity } = req.body;
   
   try {
     // Check if the product already exists in the cart for the given user
@@ -80,7 +80,7 @@ exports.addToCart = async (req, res) => {
     }
 
     // If the product doesn't exist in the cart, create a new cart item
-    const cartItem = new Cart({ productId, userId });
+    const cartItem = new Cart({ productId, userId,quantity });
     await cartItem.save();
     
     return res.status(200).json({ message: 'Product added to cart successfully', cart: cartItem });
@@ -94,7 +94,10 @@ exports.getAllCart = async (req, res) => {
   try {
     // Retrieve all cart items
     const cartItems = await Cart.find({}).populate('productId').select('productId userId quantity');
+    
+    console.log("product datas",cartItems)
     return res.status(200).json(cartItems);
+
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: error });
@@ -123,9 +126,9 @@ exports.updateCartItemQuantity = async (req, res) => {
 
 exports.deleteCartItem = async (req, res) => {
   const { cartItemId } = req.body;
-
+console.log("cart id",cartItemId)
   try {
-    const cartItem = await Cart.findById(cartItemId);
+    const cartItem = await Cart.findById({_id:cartItemId});
 
     if (!cartItem) {
       return res.status(404).json({ message: 'Cart item not found' });
