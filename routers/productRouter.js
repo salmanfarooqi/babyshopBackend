@@ -13,11 +13,6 @@ productRouter.post('/addproduct', productController.createProduct);
 productRouter.get('/product', productController.getAllProducts);
 
 // Get a single product by ID
-productRouter.get('/:id', productController.getProductById);
+productRouter.get('/ProductDetails/:id', productController.getProductById);
 
-// Update a product
-productRouter.put('/:id', productController.updateProduct);
-
-// Delete a product
-productRouter.delete('/:id', productController.deleteProduct);
-module.exports = productRouter
+module.exports={productRouter}

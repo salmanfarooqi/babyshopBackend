@@ -3,9 +3,11 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectdb = require('./config/database.js');
 const userRouter  = require('./routers/userRouter.js');
-const productRouter = require('./routers/productRouter.js');
+// const productRouter = require('./routers/productRouter.js');
 const Cartrouter = require('./routers/cartRouter.js');
 const OrderRouter = require('./routers/OrderRouter.js');
+// const { populate } = require('./models/product.js');
+const { productRouter } = require('./routers/productRouter.js');
 // dotenv.config();
 
 const app = express();
@@ -16,7 +18,8 @@ connectdb();
 
 app.use(userRouter );
 app.use(Cartrouter)
-app.use(productRouter);
+// app.use(productRouter);
+app.use(productRouter)
 app.use(OrderRouter);
 
 
